@@ -1,1 +1,27 @@
-<p>search works!</p>
+<div class="row">
+  <div class="col">
+    <input 
+      type="text" 
+      #inpSearch 
+      (keyup)="search(inpSearch.value)" 
+      class="form-control"
+      placeholder="Burcar...!!"
+    >
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="card-columns">
+    <div *ngFor="let release of artists" class="card">
+      <img [src]="release.images[0].url" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ release.name }}</h5>
+        <p class="card-text">
+          <span *ngFor="let artist of release.artists" class="badge badge-pill badge-dark">
+            {{artist.name}}
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
