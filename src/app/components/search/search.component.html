@@ -1,3 +1,9 @@
+<app-message *ngIf="error.title"
+  [title]="error?.title" 
+  [message]="error?.message"
+  [class]="error?.class"
+></app-message>
+
 <div class="row">
   <div class="col">
     <input 
@@ -5,23 +11,12 @@
       #inpSearch 
       (keyup)="search(inpSearch.value)" 
       class="form-control"
-      placeholder="Burcar...!!"
+      placeholder="Buscar...!!"
     >
   </div>
 </div>
 
-<div class="row mt-5">
-  <div class="card-columns">
-    <div *ngFor="let release of artists" class="card">
-      <img [src]="release.images | noimage" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{ release.name }}</h5>
-        <p class="card-text">
-          <span *ngFor="let artist of release.artists" class="badge badge-pill badge-dark">
-            {{artist.name}}
-          </span>
-        </p>
-      </div>
-    </div>
-  </div>
+<app-loading class="m-5" *ngIf="loading"></app-loading>
+<div class="row mt-5" *ngIf="!loading">
+  <app-cards [items]="artists"></app-cards>
 </div>
